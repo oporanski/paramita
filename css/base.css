@@ -31,6 +31,10 @@
   --color-focus: #0d7a74;
   --color-cat: #15607d;
   --color-dog: #2c7a55;
+  /* Kolor błędu formularza — poza rodziną niebiesko-zieloną, bo błąd musi się
+   * odróżniać od akcentu i linków. Zmierzony: 6.74:1 wobec --color-bg,
+   * 7.26:1 wobec bieli (norma AA dla tekstu to 4.5:1). */
+  --color-danger: #a4262c;
 
   /* Typografia */
   --font-heading: "Cormorant Garamond", Georgia, serif;

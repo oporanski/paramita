@@ -103,7 +103,7 @@ function buildAnimalCard(animal, lang) {
 
   const link = document.createElement('a');
   link.className = 'animal-card__link';
-  link.href = `https://velora.pet/breeders/${animal.breederSlug}/animals/${animal.slug}`;
+  link.href = `https://velora.pet/animals/${animal.slug}`;
   link.target = '_blank';
   link.rel = 'noopener';
 

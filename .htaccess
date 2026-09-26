@@ -12,18 +12,40 @@
 # Czyste adresy w katalogach — /zwierzeta/ podaje zwierzeta/index.html.
 DirectoryIndex index.html
 
-# Naglowki cache. Tresc HTML zmienia sie przy kazdym wgraniu, wiec krotko.
-# Obrazy, style i skrypty wersjonujemy nazwa pliku albo wgrywamy rzadko.
+# ─── Cache ────────────────────────────────────────────────────────────────
+#
+# Ta strona NIE MA etapu budowania, wiec pliki maja STALE nazwy: `animals.js`
+# zawsze nazywa sie `animals.js`. Przy dlugim cache przegladarka trzyma stara
+# wersje i poprawka do niej po prostu NIE DOCIERA — nie ma jak jej powiedziec,
+# ze plik sie zmienil.
+#
+# Incydent 2026-09-26: `max-age=604800` (7 dni) na plikach .js sprawilo, ze po
+# wgraniu poprawki wlasciciel nadal widzial stary kod. Objawialo sie to jak dwa
+# osobne bledy (te same trzy zwierzeta na stronie glownej ORAZ zdjecie, ktore
+# miga i zamienia sie w litere), a byla to jedna przyczyna: przegladarka nie
+# pobrala nowego `animals.js`.
+#
+# Dlatego: HTML, CSS i JS **zawsze sie odpytuja**. `no-cache` NIE znaczy "nie
+# cachuj" — znaczy "cachuj, ale przed uzyciem zapytaj, czy sie zmienilo".
+# Gdy plik jest bez zmian, serwer odpowiada 304 bez tresci (~200 bajtow), wiec
+# koszt jest zaden, a caly nasz kod wazy ok. 30 kB.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|css|js)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+# Obrazy i binarka rozwiazywacza zmieniaja sie rzadko i nie niosa logiki —
+# tu dlugi cache jest bezpieczny. Zdjecia zwierzat i tak przychodza z CDN-u
+# Velory (images.velora.pet) i podlegaja JEGO naglowkom, nie tym.
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresByType text/html                 "access plus 10 minutes"
-  ExpiresByType text/css                  "access plus 7 days"
-  ExpiresByType application/javascript    "access plus 7 days"
-  ExpiresByType image/jpeg                "access plus 1 year"
-  ExpiresByType image/png                 "access plus 1 year"
-  ExpiresByType image/webp                "access plus 1 year"
-  ExpiresByType image/svg+xml             "access plus 1 year"
-  ExpiresByType application/wasm          "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 30 days"
+  ExpiresByType image/png                 "access plus 30 days"
+  ExpiresByType image/webp                "access plus 30 days"
+  ExpiresByType image/svg+xml             "access plus 30 days"
+  ExpiresByType image/x-icon              "access plus 30 days"
+  ExpiresByType application/wasm          "access plus 30 days"
 </IfModule>
 
 # Cap.js potrzebuje poprawnego typu MIME dla binarki rozwiazywacza — bez tego

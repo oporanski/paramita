@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kontakt — Paramita, Gdynia</title>
-  <meta name="description" content="Napisz do hodowli Paramita w Gdyni — odpowiadam na wszystkie pytania o moje koty i psy.">
-  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <meta name="description" content="Napisz do hodowli Paramita w Gdyni — odpowiadam na wszystkie pytania o moje koty i psy.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -61,12 +62,16 @@
 
           <div class="form-field">
             <label for="fullName">Imię i nazwisko</label>
-            <input type="text" id="fullName" name="fullName" autocomplete="name" required>
+            <input type="text" id="fullName" name="fullName" autocomplete="name" required
+                   aria-describedby="fullName-error">
+            <p class="form-field__error" id="fullName-error"></p>
           </div>
 
           <div class="form-field">
             <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" autocomplete="email" required>
+            <input type="email" id="email" name="email" autocomplete="email" required
+                   aria-describedby="email-error">
+            <p class="form-field__error" id="email-error"></p>
           </div>
 
           <div class="form-field">
@@ -76,20 +81,33 @@
 
           <div class="form-field">
             <label for="subject">Temat</label>
-            <input type="text" id="subject" name="subject" required>
+            <input type="text" id="subject" name="subject" required aria-describedby="subject-error">
+            <p class="form-field__error" id="subject-error"></p>
           </div>
 
           <div class="form-field">
             <label for="message">Wiadomość</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
+            <textarea id="message" name="message" rows="6" required
+                      aria-describedby="message-error"></textarea>
+            <p class="form-field__error" id="message-error"></p>
           </div>
 
           <div class="form-field form-field--checkbox">
-            <input type="checkbox" id="consent" name="consent" required>
+            <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-error">
             <label for="consent">Wyrażam zgodę na kontakt w sprawie mojego zapytania.</label>
           </div>
+          <p class="form-field__error" id="consent-error"></p>
 
-          <button type="submit" class="contact-form__submit">Wyślij</button>
+          <div class="form-field">
+            <span class="form-field__label-text" id="captcha-label">Weryfikacja antyspamowa</span>
+            <cap-widget id="captcha-widget" data-cap-api-endpoint="https://api.velora.pet/v1/captcha/"></cap-widget>
+            <p class="form-field__hint" id="captcha-hint"></p>
+          </div>
+
+          <p id="form-status" class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+
+          <button type="submit" class="contact-form__submit" id="contact-submit" disabled
+                  aria-describedby="captcha-hint">Wyślij</button>
         </form>
       </div>
     </section>
@@ -107,6 +125,12 @@
     </div>
   </footer>
 
+  <!-- Cap.js musi wiedziec, gdzie jest lokalna binarka rozwiazywacza, ZANIM
+       jego skrypt sie wykona — inaczej sciaga ja z cdn.jsdelivr.net. Ten
+       skrypt jest celowo klasyczny (nie type="module"): tylko wtedy kolejnosc
+       wykonania wobec ponizszej zmiennej jest gwarantowana. -->
+  <script>window.CAP_CUSTOM_WASM_URL = '/vendor/cap_wasm_bg.wasm';</script>
+  <script src="/vendor/cap.min.js"></script>
   <script type="module" src="/js/contact.js" defer></script>
 </body>
 </html>
