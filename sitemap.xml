@@ -31,8 +31,34 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://paramita.pl/en/contact/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://paramita.pl/kontakt/"/>
   </url>
-  <url><loc>https://paramita.pl/en/</loc></url>
-  <url><loc>https://paramita.pl/en/animals/</loc></url>
-  <url><loc>https://paramita.pl/en/breeds/</loc></url>
-  <url><loc>https://paramita.pl/en/contact/</loc></url>
+  <url>
+    <loc>https://paramita.pl/en/</loc>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://paramita.pl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://paramita.pl/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paramita.pl/"/>
+  </url>
+  <url>
+    <loc>https://paramita.pl/en/animals/</loc>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://paramita.pl/zwierzeta/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://paramita.pl/en/animals/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paramita.pl/zwierzeta/"/>
+  </url>
+  <url>
+    <loc>https://paramita.pl/en/breeds/</loc>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://paramita.pl/rasy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://paramita.pl/en/breeds/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paramita.pl/rasy/"/>
+  </url>
+  <url>
+    <loc>https://paramita.pl/en/news/</loc>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://paramita.pl/aktualnosci/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://paramita.pl/en/news/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paramita.pl/aktualnosci/"/>
+  </url>
+  <url>
+    <loc>https://paramita.pl/en/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://paramita.pl/kontakt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://paramita.pl/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paramita.pl/kontakt/"/>
+  </url>
 </urlset>

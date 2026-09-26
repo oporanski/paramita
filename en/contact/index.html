@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kontakt — Paramita, Gdynia</title>
+  <title>Contact — Paramita, Gdynia</title>
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <meta name="description" content="Napisz do hodowli Paramita w Gdyni — odpowiadam na wszystkie pytania o moje koty i psy.">
+  <meta name="description" content="Get in touch with the Paramita cattery and kennel in Gdynia — happy to answer any questions about our cats and dogs.">
   <link rel="alternate" hreflang="pl" href="https://paramita.pl/kontakt/">
   <link rel="alternate" hreflang="en" href="https://paramita.pl/en/contact/">
   <link rel="alternate" hreflang="x-default" href="https://paramita.pl/kontakt/">
@@ -18,24 +18,24 @@
   <link rel="stylesheet" href="/css/components.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container">
-      <a class="site-header__brand" href="/">
-        <img class="site-header__logo" src="/assets/logo.png" alt="Paramita — logo hodowli">
+      <a class="site-header__brand" href="/en/">
+        <img class="site-header__logo" src="/assets/logo.png" alt="Paramita — cattery logo">
         <span class="site-header__name">Paramita</span>
       </a>
-      <nav class="site-nav" aria-label="Główna">
+      <nav class="site-nav" aria-label="Main">
         <ul class="site-nav__list">
-          <li><a href="/">Start</a></li>
-          <li><a href="/zwierzeta/">Nasze zwierzęta</a></li>
-          <li><a href="/rasy/">Nasze rasy</a></li>
-          <li><a href="/aktualnosci/">Aktualności</a></li>
-          <li><a href="/kontakt/" aria-current="page">Kontakt</a></li>
+          <li><a href="/en/">Home</a></li>
+          <li><a href="/en/animals/">Our animals</a></li>
+          <li><a href="/en/breeds/">Our breeds</a></li>
+          <li><a href="/en/news/">News</a></li>
+          <li><a href="/en/contact/" aria-current="page">Contact</a></li>
         </ul>
-        <div class="lang-switch" aria-label="Wybór języka">
-          <a href="/kontakt/" aria-current="true" hreflang="pl">PL</a>
-          <a href="/en/contact/" hreflang="en">EN</a>
+        <div class="lang-switch" aria-label="Language selection">
+          <a href="/kontakt/" hreflang="pl">PL</a>
+          <a href="/en/contact/" aria-current="true" hreflang="en">EN</a>
         </div>
       </nav>
     </div>
@@ -44,52 +44,52 @@
   <main id="main">
     <section class="page-header">
       <div class="container">
-        <h1>Kontakt</h1>
+        <h1>Contact</h1>
       </div>
     </section>
 
     <section class="contact-section">
       <div class="container">
         <p class="contact-details">
-          <a href="mailto:paramita@wp.pl">paramita@wp.pl</a> · Gdynia, Pomorskie
+          <a href="mailto:paramita@wp.pl">paramita@wp.pl</a> · Gdynia, Pomorskie, Poland
         </p>
 
         <form id="contact-form" class="contact-form" novalidate>
           <div class="form-field">
-            <label for="species">Pytam o</label>
+            <label for="species">I'm asking about</label>
             <select id="species" name="species" required>
-              <option value="CAT">Koty</option>
-              <option value="DOG">Psy</option>
+              <option value="CAT">Cats</option>
+              <option value="DOG">Dogs</option>
             </select>
           </div>
 
           <div class="form-field">
-            <label for="fullName">Imię i nazwisko</label>
+            <label for="fullName">Your name</label>
             <input type="text" id="fullName" name="fullName" autocomplete="name" required
                    aria-describedby="fullName-error">
             <p class="form-field__error" id="fullName-error"></p>
           </div>
 
           <div class="form-field">
-            <label for="email">E-mail</label>
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" autocomplete="email" required
                    aria-describedby="email-error">
             <p class="form-field__error" id="email-error"></p>
           </div>
 
           <div class="form-field">
-            <label for="phone">Telefon (opcjonalnie)</label>
+            <label for="phone">Phone (optional)</label>
             <input type="tel" id="phone" name="phone" autocomplete="tel">
           </div>
 
           <div class="form-field">
-            <label for="subject">Temat</label>
+            <label for="subject">Subject</label>
             <input type="text" id="subject" name="subject" required aria-describedby="subject-error">
             <p class="form-field__error" id="subject-error"></p>
           </div>
 
           <div class="form-field">
-            <label for="message">Wiadomość</label>
+            <label for="message">Message</label>
             <textarea id="message" name="message" rows="6" required
                       aria-describedby="message-error"></textarea>
             <p class="form-field__error" id="message-error"></p>
@@ -97,12 +97,12 @@
 
           <div class="form-field form-field--checkbox">
             <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-error">
-            <label for="consent">Wyrażam zgodę na kontakt w sprawie mojego zapytania.</label>
+            <label for="consent">I agree to be contacted about my enquiry.</label>
           </div>
           <p class="form-field__error" id="consent-error"></p>
 
           <div class="form-field">
-            <span class="form-field__label-text" id="captcha-label">Weryfikacja antyspamowa</span>
+            <span class="form-field__label-text" id="captcha-label">Anti-spam verification</span>
             <cap-widget id="captcha-widget" data-cap-api-endpoint="https://api.velora.pet/v1/captcha/"></cap-widget>
             <p class="form-field__hint" id="captcha-hint"></p>
           </div>
@@ -110,7 +110,7 @@
           <p id="form-status" class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
 
           <button type="submit" class="contact-form__submit" id="contact-submit" disabled
-                  aria-describedby="captcha-hint">Wyślij</button>
+                  aria-describedby="captcha-hint">Send</button>
         </form>
       </div>
     </section>
@@ -118,20 +118,20 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>Paramita · Małgorzata · Gdynia · <a href="mailto:paramita@wp.pl">paramita@wp.pl</a></p>
+      <p>Paramita · Gosia · Gdynia, Poland · <a href="mailto:paramita@wp.pl">paramita@wp.pl</a></p>
       <p>
-        Profile hodowli:
-        <a href="https://velora.pet/breeders/paramitapl" target="_blank" rel="noopener">Paramita*PL (koty)</a>
+        Breeder profiles:
+        <a href="https://velora.pet/breeders/paramitapl" target="_blank" rel="noopener">Paramita*PL (cats)</a>
         ·
-        <a href="https://velora.pet/breeders/paramita-fci" target="_blank" rel="noopener">Paramita FCI (psy)</a>
+        <a href="https://velora.pet/breeders/paramita-fci" target="_blank" rel="noopener">Paramita FCI (dogs)</a>
       </p>
     </div>
   </footer>
 
-  <!-- Cap.js musi wiedziec, gdzie jest lokalna binarka rozwiazywacza, ZANIM
-       jego skrypt sie wykona — inaczej sciaga ja z cdn.jsdelivr.net. Ten
-       skrypt jest celowo klasyczny (nie type="module"): tylko wtedy kolejnosc
-       wykonania wobec ponizszej zmiennej jest gwarantowana. -->
+  <!-- Cap.js needs to know where the local solver binary is BEFORE its script
+       runs — otherwise it fetches it from cdn.jsdelivr.net. This script is
+       intentionally classic (not type="module"): only then is execution
+       order relative to the variable below guaranteed. -->
   <script>window.CAP_CUSTOM_WASM_URL = '/vendor/cap_wasm_bg.wasm';</script>
   <script src="/vendor/cap.min.js"></script>
   <script type="module" src="/js/contact.js" defer></script>
