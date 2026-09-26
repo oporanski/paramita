@@ -1,0 +1,565 @@
+/*
+ * Paramita — komponenty: nagłówek, baner, karty, filtr, wystawy, galeria,
+ * formularz, stopka. Zależy od zmiennych z base.css.
+ */
+
+/* ---------- Nagłówek ---------- */
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+}
+
+.site-header__logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.site-header__name {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.site-nav__list {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.site-nav__list a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.site-nav__list a:hover,
+.site-nav__list a[aria-current="page"] {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-soft);
+}
+
+.lang-switch {
+  display: flex;
+  gap: var(--space-2);
+  font-size: 0.9rem;
+}
+
+.lang-switch a {
+  text-decoration: none;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.lang-switch a[aria-current="true"] {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-dark);
+  font-weight: 600;
+}
+
+/* ---------- Baner strony głównej ---------- */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 46vh;
+  overflow: hidden;
+}
+
+.hero__panel {
+  position: relative;
+}
+
+.hero__panel img {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  object-fit: cover;
+}
+
+.hero__panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Zdjecia banerow sa cieple; morski welon spina je z paleta strony. */
+  background: rgba(7, 44, 42, 0.34);
+}
+
+.hero__caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: #fff;
+  padding: var(--space-4);
+  z-index: 1;
+}
+
+.hero__caption h1 {
+  color: #fff;
+  font-size: clamp(2.5rem, 6vw + 1rem, 4rem);
+  margin-bottom: var(--space-2);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.hero__caption p {
+  font-size: 1.15rem;
+  margin: 0;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero__panel img {
+    min-height: 200px;
+  }
+
+  .hero__caption {
+    position: static;
+    background: var(--color-accent-dark);
+    padding: var(--space-7) var(--space-4);
+  }
+
+  .hero__panel::after {
+    display: none;
+  }
+}
+
+/* ---------- Baner prosty (podstrony) ---------- */
+.page-header {
+  background: var(--color-surface-alt);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--space-7);
+  text-align: center;
+}
+
+.page-header p {
+  max-width: var(--measure);
+  margin-inline: auto;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Sekcja "O nas" ---------- */
+.about .prose {
+  margin-inline: auto;
+  text-align: left;
+}
+
+/* ---------- Filtr gatunku ---------- */
+.species-filter {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.species-filter button {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: var(--space-2) var(--space-5);
+  border-radius: 999px;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .species-filter button {
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  }
+}
+
+.species-filter button[aria-pressed="true"] {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  color: #fff;
+}
+
+.species-filter button:hover {
+  border-color: var(--color-accent-dark);
+}
+
+/* ---------- Karta zwierzęcia ---------- */
+.animal-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animal-card {
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .animal-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+}
+
+.animal-card__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.animal-card__photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: var(--color-surface-alt);
+}
+
+.animal-card__placeholder {
+  /* Zastepnik dla zwierzecia, ktore nie ma zdjecia w portalu (dzis 2 z 5 kotow).
+   * Swiadomie NIE jest to rysunek zwierzaka: kreskowka klocila sie z szeryfowym,
+   * spokojnym charakterem reszty strony i wygladala jak wklejka z innego serwisu.
+   * Zamiast tego stonowany panel z monogramem — czytelny, cichy, nie udaje zdjecia. */
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface-alt);
+  font-family: var(--font-heading);
+  /* Bez `container-type` na karcie jednostka `cqi` byłaby nieprawidlowa. */
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+.animal-card__placeholder[data-species="CAT"] {
+  color: var(--color-cat);
+  background-color: color-mix(in srgb, var(--color-cat) 10%, var(--color-surface-alt));
+}
+.animal-card__placeholder[data-species="DOG"] {
+  color: var(--color-dog);
+  background-color: color-mix(in srgb, var(--color-dog) 10%, var(--color-surface-alt));
+}
+
+.animal-card__name,
+.animal-card__breed,
+.animal-card__meta {
+  padding-inline: var(--space-4);
+}
+
+.animal-card__name {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-1);
+  font-size: 1.15rem;
+}
+
+.animal-card__breed {
+  margin-bottom: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.animal-card__meta {
+  margin-bottom: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Wystawy ---------- */
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.event {
+  display: grid;
+  grid-template-columns: 9rem 1fr auto;
+  gap: var(--space-4);
+  align-items: baseline;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.event__date {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-accent-dark);
+}
+
+.event__title {
+  font-weight: 500;
+}
+
+.event__place {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+@media (max-width: 560px) {
+  .event {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .event__place {
+    text-align: left;
+  }
+}
+
+/* ---------- Galeria ---------- */
+.gallery-album h3 {
+  margin-bottom: var(--space-4);
+}
+
+.gallery-album__photo {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.gallery-album__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Formularz kontaktowy ---------- */
+.contact-form {
+  max-width: var(--measure);
+  margin-inline: auto;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.form-field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.form-field label {
+  font-weight: 500;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  padding: var(--space-3);
+  /* Kontur pola musi byc widoczny — --color-border ma wobec bieli tylko 1.25:1,
+   * a norma dla elementow interfejsu to 3:1. --color-border-strong daje 3.32:1. */
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+}
+
+.form-field--checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  flex-direction: row;
+}
+
+.form-field--checkbox label {
+  font-weight: 400;
+}
+
+.contact-form__submit {
+  justify-self: start;
+  background: var(--color-accent-dark);
+  color: #fff;
+  border: none;
+  padding: var(--space-3) var(--space-6);
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .contact-form__submit {
+    transition: background-color var(--transition-fast);
+  }
+}
+
+.contact-form__submit:hover {
+  background: var(--color-accent);
+}
+
+.contact-details {
+  max-width: var(--measure);
+  margin: 0 auto var(--space-7);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.contact-details a {
+  font-weight: 600;
+}
+
+/* ---------- Rasy ---------- */
+.breeds-grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.breed-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.breed-card p {
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* ---------- Stopka ---------- */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  padding-block: var(--space-6);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.site-footer a {
+  color: var(--color-accent-dark);
+}
+
+.site-footer p {
+  margin-bottom: var(--space-2);
+}
+
+/* ─── Galeria: klasy generowane przez js/gallery.js ────────────────────────
+ * Statyczny HTML w repozytorium uzywa `.gallery-album__photo`, a skrypt po
+ * podmianie tworzy `__grid`, `__name`, `__thumb` i `__thumb-button`. Zanim to
+ * dopisano, galeria po wejsciu skryptu traciła caly wyglad — czterech z pieciu
+ * klas nie mialo w CSS ani jednej reguly (zmierzone w przegladarce, nie
+ * zgadniete; w samym kodzie tego nie widac). Oba zestawy klas sa tu obslugiwane. */
+.gallery-album__name {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+}
+
+.gallery-album__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-4);
+}
+
+.gallery-album__thumb-button {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.gallery-album__thumb-button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.gallery-album__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-fast);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .gallery-album__thumb-button:hover .gallery-album__thumb {
+    transform: scale(1.04);
+  }
+}
+
+/* Powiekszenie zdjecia — natywny <dialog>, wiec Esc zamyka bez naszego kodu. */
+.gallery-lightbox {
+  border: 0;
+  padding: 0;
+  max-width: min(92vw, 1100px);
+  max-height: 90vh;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.gallery-lightbox::backdrop {
+  background: rgba(7, 44, 42, 0.72);
+}
+
+.gallery-lightbox__photo {
+  display: block;
+  max-width: 100%;
+  max-height: 84vh;
+  width: auto;
+  height: auto;
+}
+
+.gallery-lightbox__close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.gallery-lightbox__close:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}

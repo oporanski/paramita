@@ -1,0 +1,46 @@
+# Paramita — statyczna strona hodowli. Serwer: Apache.
+#
+# Jedna wersja domeny jest glowna. Zmierzone 2026-09-26: paramita.pl ORAZ
+# www.paramita.pl odpowiadaly 200 bez przekierowania miedzy soba, wiec ta sama
+# tresc istniala pod dwoma adresami. Wyszukiwarka nazywa to duplikatem.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.paramita\.pl$ [NC]
+  RewriteRule ^(.*)$ https://paramita.pl/$1 [R=301,L]
+</IfModule>
+
+# Czyste adresy w katalogach — /zwierzeta/ podaje zwierzeta/index.html.
+DirectoryIndex index.html
+
+# Naglowki cache. Tresc HTML zmienia sie przy kazdym wgraniu, wiec krotko.
+# Obrazy, style i skrypty wersjonujemy nazwa pliku albo wgrywamy rzadko.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 10 minutes"
+  ExpiresByType text/css                  "access plus 7 days"
+  ExpiresByType application/javascript    "access plus 7 days"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType application/wasm          "access plus 1 year"
+</IfModule>
+
+# Cap.js potrzebuje poprawnego typu MIME dla binarki rozwiazywacza — bez tego
+# przegladarka odrzuci ja i widget spadnie na wolniejszy wariant w czystym JS.
+<IfModule mod_mime.c>
+  AddType application/wasm .wasm
+</IfModule>
+
+# Kompresja tekstu.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>
+
+# Podstawowe naglowki bezpieczenstwa. Strona nie ma logowania ani ciasteczek,
+# wiec to zestaw minimalny, nie rozbudowany.
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>

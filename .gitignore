@@ -1,0 +1,11 @@
+.DS_Store
+*.log
+
+# Pliki Markdown nie trafiaja do repozytorium — decyzja wlasciciela 2026-09-26.
+# Sa to materialy robocze (tresc zrodlowa, kontrakt, notatki), ktore zostaja
+# lokalnie. Konsekwencja: na GitHubie nie ma README ani opisu projektu.
+*.md
+
+# Materialy robocze — przegladarka ich nie potrzebuje i na serwer nie ida.
+/data/
+/content/
