@@ -190,6 +190,56 @@ function setupSpeciesFilter(gridEl, allAnimals, lang) {
   });
 }
 
+
+/**
+ * Losuje zwierzeta do sekcji wyroznionych na stronie glownej.
+ *
+ * Wczesniej bylo tu `all.slice(0, 3)`, czyli PIERWSZE trzy z odpowiedzi API.
+ * API zwraca najpierw koty, alfabetycznie, wiec strona glowna pokazywala w
+ * kolko ten sam zestaw — same koty, w tym dwa BEZ zdjecia, bo akurat takie
+ * wypadly na poczatku alfabetu. Wizytowka hodowli bez zdjec nie jest wizytowka.
+ *
+ * Dwa warunki, w tej kolejnosci waznosci:
+ *  1. **Pierwszenstwo maja zwierzeta ZE ZDJECIEM.** Monogram jest dobry jako
+ *     zastepnik w pelnym spisie, ale nie jako twarz strony glownej. Gdy
+ *     zdjeciowych jest mniej niz miejsc, reszte dobieramy z pozostalych —
+ *     sekcja nigdy nie jest krotsza, niz powinna.
+ *  2. **Oba gatunki, gdy oba sa dostepne.** To jedna hodowla kotow I psow;
+ *     trzy koty pod rzad ukrywaja polowe tego, czym jest.
+ *
+ * @param {NormalizedAnimal[]} animals
+ * @param {number} count
+ * @returns {NormalizedAnimal[]}
+ */
+function pickFeatured(animals, count) {
+  /** @param {NormalizedAnimal[]} xs */
+  const shuffled = (xs) => {
+    const a = [...xs];
+    for (let i = a.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+
+  const withPhoto = shuffled(animals.filter((a) => a.photoUrl));
+  const withoutPhoto = shuffled(animals.filter((a) => !a.photoUrl));
+  const pool = [...withPhoto, ...withoutPhoto];
+
+  const picked = pool.slice(0, count);
+
+  // Domieszka drugiego gatunku: jesli wypadl tylko jeden, a drugi istnieje,
+  // podmieniamy OSTATNIA karte. Podmieniamy ostatnia, a nie losowa, zeby dwa
+  // pierwsze miejsca zostaly przy zwierzetach ze zdjeciem.
+  const speciesPicked = new Set(picked.map((a) => a.species));
+  if (picked.length === count && speciesPicked.size === 1) {
+    const missing = pool.find((a) => !speciesPicked.has(a.species));
+    if (missing) picked[picked.length - 1] = missing;
+  }
+
+  return picked;
+}
+
 /**
  * Pobiera zwierzęta kotów i psów (jedno zapytanie na gatunek), scala je
  * i wypełnia kontenery `animals-grid` / `animals-featured`, jeśli są na stronie.
@@ -224,7 +274,7 @@ export async function initAnimals() {
   }
 
   if (featuredEl instanceof HTMLElement) {
-    renderInto(featuredEl, all.slice(0, FEATURED_COUNT), lang);
+    renderInto(featuredEl, pickFeatured(all, FEATURED_COUNT), lang);
   }
 }
 

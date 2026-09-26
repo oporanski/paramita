@@ -20,6 +20,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://paramita.pl/rasy/"/>
   </url>
   <url>
+    <loc>https://paramita.pl/aktualnosci/</loc>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://paramita.pl/aktualnosci/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://paramita.pl/en/news/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paramita.pl/aktualnosci/"/>
+  </url>
+  <url>
     <loc>https://paramita.pl/kontakt/</loc>
     <xhtml:link rel="alternate" hreflang="pl" href="https://paramita.pl/kontakt/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://paramita.pl/en/contact/"/>
